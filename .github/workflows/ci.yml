@@ -1,0 +1,9 @@
+on: [push]
+
+jobs:
+  run_action:
+    runs-on: ubuntu-latest
+    name: First attempt to run coverage action
+    steps:
+      - name: Hello world action step
+        uses: ./
