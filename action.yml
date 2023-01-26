@@ -1,5 +1,11 @@
 name: 'cobertura-coverage-action'
 description: 'Greet someone and record the time'
+inputs:
+  cobertura-file:
+    description: 'Path to the cobertura xml file'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.cobertura-file }}

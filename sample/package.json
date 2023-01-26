@@ -1,0 +1,17 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test/",
+    "coverage": "nyc --temp-dir .coverage/.nyc_output --report-dir .coverage --reporter=lcov --reporter=cobertura npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "10.2.0",
+    "nyc": "15.1.0"
+  }
+}

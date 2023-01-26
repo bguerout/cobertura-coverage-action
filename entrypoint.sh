@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ls
-diff-cover cobertura-coverage.xml -q --compare-branch=origin/master --json-report toto.json
+diff-cover "${1}" -q --compare-branch=origin/main --json-report report.json
+jq '.' report.json
