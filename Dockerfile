@@ -2,7 +2,7 @@ FROM nikolaik/python-nodejs:python3.10-nodejs19-alpine
 
 RUN apk update && apk add bash git jq
 
-RUN pip install --root-user-action=ignore diff-cover
+RUN pip install --root-user-action=ignore diff-cover yq
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
