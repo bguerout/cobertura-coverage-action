@@ -1,11 +1,28 @@
 name: 'cobertura-coverage-action'
-description: 'Greet someone and record the time'
+description: 'Add or update a command with code coverage'
 inputs:
   cobertura-file:
     description: 'Path to the cobertura xml file'
     required: true
+
+#https://docs.github.com/en/actions/learn-github-actions/contexts#env-context
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.cobertura-file }}
+  using: "composite"
+  steps:
+    - name : "Retrieve data from cache"
+      uses: actions/cache@v3
+      with:
+        path: output/cobertura-coverage
+        key: cobertura-coverage-${{ github.base_ref }}
+
+    - name : "Generate cobertura file"
+      uses: ./docker
+      with:
+        cobertura-file: ${{ inputs.cobertura-file }}
+
+    - name : "Store coverage into cache cobertura-coverage-${{ github.ref_name }}"
+      uses: actions/cache/save@v3
+      with:
+        path: output/cobertura-coverage
+        key: cobertura-coverage-pull-request-${{ github.head_ref }}
+

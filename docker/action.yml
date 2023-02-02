@@ -1,0 +1,12 @@
+name: 'generate-coverage-file'
+description: 'Generate coverage file'
+inputs:
+  cobertura-file:
+    description: 'Path to the cobertura xml file'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.cobertura-file }}
