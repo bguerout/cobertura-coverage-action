@@ -1,10 +1,14 @@
-on: [push]
+on: [pull_request]
 
 jobs:
   run_action:
     runs-on: ubuntu-latest
-    name: cobertura-coverage-action
+    name: sample
     steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -18,7 +22,7 @@ jobs:
       - run: npm run coverage
         working-directory: sample
 
-      - name: cobertura-coverage-action
+      - name: Coverage
         uses: ./
         with:
           cobertura-file: sample/.coverage/cobertura-coverage.xml
